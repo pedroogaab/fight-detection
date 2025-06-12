@@ -1,0 +1,25 @@
+tensorflow>=2.12.0
+opencv-python>=4.8.0
+numpy>=1.21.0
+scikit-learn>=1.3.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+tqdm>=4.65.0
+argparse
+
+# Para GPU (opcional, se disponível)
+# tensorflow-gpu>=2.12.0
+
+# Instalação:
+# pip install -r requirements.txt
+
+# Estrutura de pastas recomendada:
+# projeto/
+# ├── data/
+# │   ├── Violence/          # Vídeos com violência
+# │   └── NonViolence/       # Vídeos sem violência
+# ├── models/                # Modelos salvos
+# ├── results/               # Resultados de inferência
+# ├── violence_detection.py  # Script principal de treinamento
+# ├── inference.py           # Script de inferência
+# └── requirements.txt       # Dependências
