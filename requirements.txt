@@ -8,7 +8,7 @@ tqdm>=4.65.0
 argparse
 
 # Para GPU (opcional, se disponível)
-# tensorflow-gpu>=2.12.0
+# tensorflow-gpu
 
 # Instalação:
 # pip install -r requirements.txt
@@ -18,8 +18,6 @@ argparse
 # ├── data/
 # │   ├── Violence/          # Vídeos com violência
 # │   └── NonViolence/       # Vídeos sem violência
-# ├── models/                # Modelos salvos
-# ├── results/               # Resultados de inferência
-# ├── violence_detection.py  # Script principal de treinamento
-# ├── inference.py           # Script de inferência
+# ├── models/                # Modelos resultantes
+# ├── violence_train.py      # Script principal de treinamento
 # └── requirements.txt       # Dependências
