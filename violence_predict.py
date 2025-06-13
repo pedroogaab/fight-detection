@@ -1,7 +1,6 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' 
-print("\n -=-=-=-=-=-=-=    Processing   -=-=-=-=-=-=-= \n")
-
+print("\n -=-=-=-=-=-=-=     Processing   -=-=-=-=-=-=-= \n")
 
 
 import cv2
@@ -9,7 +8,6 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 import sys
-
 
 
 # --- CONFIGURATION ---
@@ -48,7 +46,7 @@ def preprocess_image(img_path):
 
 
 def predict_and_annotate(image_path):
-    """Predict class and annotate the image with the result."""
+    """Predict class and annotate the image with the result and confidence."""
     sequence = preprocess_image(image_path)
     if sequence is None:
         return
@@ -58,32 +56,38 @@ def predict_and_annotate(image_path):
 
     predictions = model.predict(input_batch, verbose=0)
 
-    # **FIX 1: Correctly extract the scalar value from the prediction array**
-    # Access the first element of the batch [0] and the first element of the output [0]
+    # Extrai o valor da predição (probabilidade de ser "Violence")
     prediction_value = predictions[0][0]
     
-    # Determine the class based on the prediction value
-    predicted_index = int(prediction_value > 0.5)
-    predicted_label = CLASS_NAMES[predicted_index]
-
-    # **FIX 2: Set text color based on the prediction**
-    # Green for Non-Violence (BGR: 0, 255, 0), Red for Violence (BGR: 0, 0, 255)
+    # Calcula a confiança e determina a classe
+    if prediction_value > 0.5:
+        predicted_label = "Violence"
+        confidence = prediction_value
+    else:
+        predicted_label = "Non-Violence"
+        confidence = 1 - prediction_value
+        
+    # Define a cor do texto com base na predição
+    # Vermelho para Violence (BGR: 0, 0, 255), Azul para Non-Violence (BGR: 255, 0, 0)
     text_color = (0, 0, 255) if predicted_label == "Violence" else (255, 0, 0)
     
-    # Reload original image to annotate and save
+    # Formata o texto para exibição (Ex: "Violence: 98.75%")
+    text_to_display = f"{predicted_label}: {confidence:.2%}"
+
+    # Recarrega a imagem original para anotar e salvar
     original_img = cv2.imread(image_path)
     if original_img is None:
         print(f"Error: Could not read original image for annotation from {image_path}")
         return
 
-    # Annotate the image with the correct color
+    # Anota a imagem com o resultado e a confiança
     cv2.putText(
         original_img,
-        predicted_label,
+        text_to_display,  # Usa o novo texto formatado
         (10, 30),
         FONT,
         FONT_SCALE,
-        text_color, # Use the dynamic color
+        text_color,
         FONT_THICKNESS,
         cv2.LINE_AA
     )
@@ -92,6 +96,7 @@ def predict_and_annotate(image_path):
     cv2.imwrite(output_path, original_img)
 
     print(f"[✓] Image processed. Result saved to: {output_path}")
+    print(f"    -> Prediction: {text_to_display}")
 
 
 if __name__ == "__main__":
