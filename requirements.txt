@@ -1,4 +1,4 @@
-tensorflow
+tensorflow==2.15.0
 opencv-python
 numpy
 scikit-learn
@@ -7,11 +7,8 @@ seaborn
 tqdm
 argparse
 
-# Para GPU (opcional, se disponível)
-# tensorflow-gpu
-
 # Instalação:
-# pip install -r requirements.txt
+# pip install -r requirements.txt > versões do Python compativeis 3.8 - 3.11
 
 # Estrutura de pastas recomendada:
 # projeto/
