@@ -1,10 +1,10 @@
-tensorflow>=2.12.0
-opencv-python>=4.8.0
-numpy>=1.21.0
-scikit-learn>=1.3.0
-matplotlib>=3.7.0
-seaborn>=0.12.0
-tqdm>=4.65.0
+tensorflow
+opencv-python
+numpy
+scikit-learn
+matplotlib
+seaborn
+tqdm
 argparse
 
 # Para GPU (opcional, se disponível)
@@ -19,5 +19,6 @@ argparse
 # │   ├── Violence/          # Vídeos com violência
 # │   └── NonViolence/       # Vídeos sem violência
 # ├── models/                # Modelos resultantes
-# ├── violence_train.py      # Script principal de treinamento
+# ├── violence_train.ipynb   # Script principal de treinamento
+# ├── violence_predict.py    # Script para testar o desempenho em imagens > python violence_predict.py imgs_test_not-violence/5.jpg
 # └── requirements.txt       # Dependências
