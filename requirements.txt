@@ -7,15 +7,4 @@ seaborn
 tqdm
 argparse
 
-# Instalação:
 # pip install -r requirements.txt > versões do Python compativeis 3.8 - 3.11
-
-# Estrutura de pastas recomendada:
-# projeto/
-# ├── data/
-# │   ├── Violence/          # Vídeos com violência
-# │   └── NonViolence/       # Vídeos sem violência
-# ├── models/                # Modelos resultantes
-# ├── violence_train.ipynb   # Script principal de treinamento
-# ├── violence_predict.py    # Script para testar o desempenho em imagens > python violence_predict.py imgs_test_not-violence/5.jpg
-# └── requirements.txt       # Dependências
