@@ -13,7 +13,7 @@ Este projeto utiliza um modelo de deep learning para classificar a presença de 
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
+    git clone [https://github.com/pedroogaab/fight-detection](https://github.com/pedroogaab/fight-detection)
     cd seu-repositorio
     ```
 
