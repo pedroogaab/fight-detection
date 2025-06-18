@@ -45,14 +45,14 @@ def predict_frame(sequence):
     
     prediction_value = predictions[0][0] # Probabilidade de ser "Violence"
     
-    if prediction_value > 0.5:
+    if prediction_value > 0.85:
         predicted_label = "Violence"
         confidence = prediction_value
     else:
         predicted_label = "Non-Violence"
         confidence = 1 - prediction_value
         
-    text_color = (0, 0, 255) if predicted_label == "Violence" else (255, 0, 0) # BGR
+    text_color = (0, 0, 255) if predicted_label == "Violence" else (0, 255, 0) # BGR
     text_to_display = f"{predicted_label}: {confidence:.2%}"
     
     return text_to_display, text_color, predicted_label
@@ -128,7 +128,7 @@ def process_video(video_path):
             cv2.putText(
                 frame,
                 text_to_display,
-                (10, 30),
+                (20, 65),
                 FONT,
                 FONT_SCALE,
                 text_color,
